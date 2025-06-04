@@ -1,0 +1,33 @@
+<!-- login.component.html -->
+
+<div class="body">
+  <div class="login">
+    <img
+      src="assets/img/account_circle_1000dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
+      alt="user"
+    />
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="width">
+        <input
+          matInput
+          placeholder="Usuario"
+          formControlName="usuario"
+          autocomplete="off"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="width">
+        <input
+          matInput
+          placeholder="Contraseña"
+          type="password"
+          formControlName="contrasena"
+          autocomplete="off"
+        />
+      </mat-form-field>
+
+      <button mat-stroked-button type="submit">Ingresar</button>
+    </form>
+  </div>
+</div>

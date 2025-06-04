@@ -1,0 +1,26 @@
+.body {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login {
+  width: 100%;
+  max-width: 330px;
+  text-align: center;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.width {
+  width: 80%;
+}
+
+h1 {
+  font-weight: 500;
+}

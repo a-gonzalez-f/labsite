@@ -1,0 +1,15 @@
+<!-- header.component.html -->
+
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleSidenav.emit()" *ngIf="showMenuButton">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="app-title">Mi Aplicación</span>
+
+  <span class="spacer"></span>
+
+  <button mat-icon-button [routerLink]="['/home']" routerLinkActive="active">
+    <mat-icon>home</mat-icon>
+  </button>
+</mat-toolbar>
