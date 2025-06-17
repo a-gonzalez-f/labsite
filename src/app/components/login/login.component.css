@@ -24,3 +24,7 @@ img {
 h1 {
   font-weight: 500;
 }
+
+.registerBtn {
+  margin-top: 1rem;
+}

@@ -12,9 +12,9 @@ export class AuthService {
     return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 
-  login(): void {
+  login(token: string): void {
     if (this.isBrowser()) {
-      localStorage.setItem(this.TOKEN_KEY, 'true');
+      localStorage.setItem(this.TOKEN_KEY, token);
     }
   }
 
@@ -26,7 +26,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (this.isBrowser()) {
-      return localStorage.getItem(this.TOKEN_KEY) === 'true';
+      return !!localStorage.getItem(this.TOKEN_KEY);
     }
     return false;
   }

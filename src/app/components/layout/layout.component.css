@@ -5,3 +5,13 @@
 .content {
   padding: 16px;
 }
+
+.custom-sidenav {
+  width: 240px;
+}
+
+@media (max-width: 768px) {
+  .custom-sidenav {
+    width: 200px;
+  }
+}

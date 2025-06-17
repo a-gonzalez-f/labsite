@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -13,11 +14,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService //
+    private http: HttpClient,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       usuario: ['', Validators.required],
@@ -36,11 +39,16 @@ export class LoginComponent implements OnInit {
 
     const { usuario, contrasena } = this.loginForm.value;
 
-    if (usuario === 'admin' && contrasena === '1234') {
-      this.authService.login(); // 👈 LLAMADA CLAVE
-      this.router.navigate(['/home']);
-    } else {
-      alert('Usuario o contraseña incorrectos');
-    }
+    this.http
+      .post<{ token: string }>('/api/auth/login', { usuario, contrasena })
+      .subscribe({
+        next: (res) => {
+          this.authService.login(res.token);
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.errorMessage = err.error.message || 'Error al iniciar sesión';
+        },
+      });
   }
 }

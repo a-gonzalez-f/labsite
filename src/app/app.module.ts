@@ -9,6 +9,11 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withFetch,
+} from '@angular/common/http';
 
 // Angular Material
 import { NativeDateModule } from '@angular/material/core';
@@ -27,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,7 @@ import { HomeComponent } from './components/home/home.component';
     LayoutComponent,
     HeaderComponent,
     HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,10 @@ import { HomeComponent } from './components/home/home.component';
     MatSidenavModule,
     MatListModule,
   ],
-  providers: [provideClientHydration(withEventReplay())],
+  providers: [
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
